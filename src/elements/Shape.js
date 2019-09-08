@@ -10,6 +10,7 @@ class Shape {
     this.camera = camera;
     this.startX = x;
     this.startY = y;
+    this.stroke = 'grey';
     this.setStartPosition();
   }
 
@@ -45,7 +46,7 @@ class Shape {
       this.y = transform.y(this.y);
       this.perform(transform.type)
     }
-    this.ctx.strokeStyle = 'grey';
+    this.ctx.strokeStyle = this.stroke;
     this.ctx.fillStyle = this.color;
     this.ctx.fill();
     this.ctx.closePath();

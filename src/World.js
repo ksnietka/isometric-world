@@ -12,12 +12,20 @@ class World {
     this.worldMap = Array.from({ length: this.sizeX }, () => Array.from({ length: this.sizeY}));
   }
 
+  setSeaLevel(seaLevel) {
+    this.seaLevel = seaLevel;
+  }
+
   initializeMap() {
-    const heightMap = this.generator.generate(5, this.sizeX, this.sizeY);
+    const heightMap = this.generator.generate(10, this.sizeX, this.sizeY);
 
     for (let i = 0; i < this.sizeX; i++) {
       for(let j = 0; j < this.sizeY; j++) {
-        this.worldMap[i][j] = new Box(this.ctx, this.camera, j, i, this.boxSize, heightMap[i][j], 'green');
+        let box = new Box(this.ctx, this.camera, j, i, this.boxSize, heightMap[i][j], '#809c13');
+        this.worldMap[i][j] = box;
+        if(this.seaLevel && heightMap[i][j] < this.seaLevel) {
+          box.createSea(this.seaLevel);
+        }
       }
     }
   }

@@ -8,8 +8,10 @@ const ctx = canvas.getContext('2d');
 
 const BOX_SIZE = 30;
 const camera = new Camera(BOX_SIZE,  40);
-const generator = new NoiseGenerator(200);
+const generator = new NoiseGenerator(400);
 const world = new World(canvas, ctx, camera, generator, 500, 500, BOX_SIZE);
+
+world.setSeaLevel(150);
 
 world.initializeMap();
 

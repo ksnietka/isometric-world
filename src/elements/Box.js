@@ -1,6 +1,7 @@
 const Plane = require('./Plane');
 const LWall = require('./LWall');
 const RWall = require('./RWall');
+const Color = require('./../helpers/Color');
 
 
 class Box {
@@ -17,17 +18,32 @@ class Box {
   }
 
   setColor(color) {
-    for(let element of this.elements) {
-      element.color = color
-    }
+    for(let element of this.elements)
+      element.color = color;
+  }
+
+  setStroke(color) {
+    for(let element of this.elements)
+      element.stroke = color;
+  }
+
+  setHeight(height) {
+    for(let element of this.elements)
+      element.height = height;
+  }
+
+  createSea(seaLevel) {
+    this.setColor('blue');
+    this.setStroke('blue');
+    this.setHeight(seaLevel);
   }
 
   setElements() {
     const { x, y, size, height, color, camera } = this;
     this.elements.push(new Plane(this.ctx, camera, x, y, size, 0, color));
-    this.elements.push(new LWall(this.ctx, camera, x, y, size, height, '#809c13'));
-    this.elements.push(new RWall(this.ctx, camera, x, y, size, height, '#abc32f'));
-    this.elements.push(new Plane(this.ctx, camera, x, y, size, height, '#b5e550'));
+    this.elements.push(new LWall(this.ctx, camera, x, y, size, height, Color.brightness(color, -20)));
+    this.elements.push(new RWall(this.ctx, camera, x, y, size, height,  Color.brightness(color, -10)));
+    this.elements.push(new Plane(this.ctx, camera, x, y, size, height, color));
 
   }
   isVisible() {
