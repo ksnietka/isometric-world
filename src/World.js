@@ -1,4 +1,4 @@
-const Box = require('./Box');
+const Box = require('./elements/Box');
 
 class World {
   constructor(canv, ctx, camera, noiseGenerator, xSize, ySize, boxSize) {
@@ -17,7 +17,7 @@ class World {
 
     for (let i = 0; i < this.sizeX; i++) {
       for(let j = 0; j < this.sizeY; j++) {
-        this.worldMap[i][j] = (new Box(ctx, this.camera, i, j, this.boxSize, heightMap[i][j], 'green'));
+        this.worldMap[i][j] = new Box(this.ctx, this.camera, j, i, this.boxSize, heightMap[i][j], 'green');
       }
     }
   }
@@ -28,10 +28,9 @@ class World {
 
   render() {
     this.cleanFrame();
-    const [visibilityX, visibilityY] = this.camera.getRangeVisibility();
-    for(let [rowI, row] of this.worldMap.entries()) {
-      for(let [boxI, box] of row.entries()) {
-        if(visibilityX[0] < boxI && visibilityX[1] > boxI && visibilityY[0] < rowI && visibilityY[1] > rowI)
+    for(let row of this.worldMap) {
+      for(let box of row) {
+        if(box.isVisible())
           box.draw();
       }
     }

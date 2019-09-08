@@ -4,7 +4,7 @@ const World = require('./World');
 const initHandlers = require('./handlers');
 
 const canvas = document.getElementById('canv');
-ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 
 const BOX_SIZE = 30;
 const camera = new Camera(BOX_SIZE,  40);

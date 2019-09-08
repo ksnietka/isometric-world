@@ -30,9 +30,14 @@ class Box {
     this.elements.push(new Plane(this.ctx, camera, x, y, size, height, '#b5e550'));
 
   }
+  isVisible() {
+    const [visibilityX, visibilityY] = this.camera.getRangeVisibility();
+    return visibilityX[0] < this.x && visibilityX[1] > this.x
+      && visibilityY[0] < this.y && visibilityY[1] > this.y;
+  }
   draw() {
     for(let element of this.elements) {
-      element.drawIsometric();
+      element.draw();
     }
   }
 }

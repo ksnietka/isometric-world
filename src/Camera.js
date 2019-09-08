@@ -27,8 +27,8 @@ class Camera {
   getFocus () {
     //TODO: Determining focus still not work well. I have to find more sophisticated way to calculating that.
     return {
-      y: -( 2 * (this.positionX/ this.boxSize) / Math.sqrt(3) + ((this.positionY/this.boxSize) - (this.positionX/ this.boxSize)/Math.sqrt(3))/4),
-      x: -(((this.positionY/this.boxSize) - (this.positionX/this.boxSize)/ Math.sqrt(3))/2)
+      x: -( 2 * (this.positionX/ this.boxSize) / Math.sqrt(3) + ((this.positionY/this.boxSize) - (this.positionX/ this.boxSize)/Math.sqrt(3))/4),
+      y: -(((this.positionY/this.boxSize) - (this.positionX/this.boxSize)/ Math.sqrt(3))/2)
     }
   }
   getRangeVisibility() {
